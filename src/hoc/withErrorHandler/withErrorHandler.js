@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import Modal from "../../components/UI/Modal/Modal";
-import Aux from "../Aux/Aux";
+import React, { Component } from 'react';
+import Modal from '../../components/UI/Modal/Modal';
+import Aux from '../Aux/Aux';
 
 const withErrorHandler = (WrappedComponent, axios) => {
   return class extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        error: null
+        error: null,
       };
       this.reqInterceptor = axios.interceptors.request.use(req => {
         this.setState({ error: null });
@@ -17,7 +17,7 @@ const withErrorHandler = (WrappedComponent, axios) => {
         res => res,
         error => {
           this.setState({ error: error });
-        }
+        },
       );
     }
 

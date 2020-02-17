@@ -1,20 +1,20 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import Order from "../../components/Order/Order";
-import axios from "../../axios-orders";
-import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
+import Order from '../../components/Order/Order';
+import axios from '../../axios-orders';
+import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 
 class Orders extends Component {
   state = {
     orders: [],
-    loading: true
+    loading: true,
   };
 
   componentDidMount() {
     const fetchedOrders = [];
 
     axios
-      .get("orders.json")
+      .get('orders.json')
       .then(res => {
         for (let key in res.data) {
           fetchedOrders.push({ ...res.data[key], id: key });
