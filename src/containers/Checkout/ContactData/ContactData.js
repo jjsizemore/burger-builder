@@ -94,11 +94,11 @@ class ContactData extends Component {
     loading: false,
   };
 
-  orderHandler = event => {
+  orderHandler = (event) => {
     event.preventDefault();
     this.setState({ loading: true });
     const formData = {};
-    for (let formElementIdentifier in this.state.orderForm) {
+    for (const formElementIdentifier in this.state.orderForm) {
       formData[formElementIdentifier] = this.state.orderForm[formElementIdentifier].value;
     }
     const order = {
@@ -108,11 +108,11 @@ class ContactData extends Component {
     };
     axios
       .post('/orders.json', order)
-      .then(response => {
+      .then((response) => {
         this.setState({ loading: false });
         this.props.history.push('/');
       })
-      .catch(error => {
+      .catch((error) => {
         this.setState({ loading: false });
       });
   };
@@ -150,17 +150,17 @@ class ContactData extends Component {
     updatedFormElement.touched = true;
 
     let formIsValid = true;
-    for (let inputIdentifier in updatedOrderForm) {
+    for (const inputIdentifier in updatedOrderForm) {
       formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid;
     }
 
     updatedOrderForm[inputIdentifier] = updatedFormElement;
-    this.setState({ orderForm: updatedOrderForm, formIsValid: formIsValid });
+    this.setState({ orderForm: updatedOrderForm, formIsValid });
   };
 
   render() {
     const formElementsArray = [];
-    for (let key in this.state.orderForm) {
+    for (const key in this.state.orderForm) {
       formElementsArray.push({
         id: key,
         config: this.state.orderForm[key],
@@ -168,7 +168,7 @@ class ContactData extends Component {
     }
     let form = (
       <form onSubmit={this.orderHandler}>
-        {formElementsArray.map(formElement => (
+        {formElementsArray.map((formElement) => (
           <Input
             key={formElement.id}
             elementType={formElement.config.elementType}
@@ -177,7 +177,7 @@ class ContactData extends Component {
             invalid={!formElement.config.valid}
             shouldValidate={formElement.config.validation}
             touched={formElement.config.touched}
-            changed={event => this.inputChangedHandler(event, formElement.id)}
+            changed={(event) => this.inputChangedHandler(event, formElement.id)}
           />
         ))}
         <Button btnType="Success" disabled={!this.state.formIsValid} clicked={this.orderHandler}>
@@ -197,7 +197,7 @@ class ContactData extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     ings: state.ingredients,
     price: state.totalPrice,

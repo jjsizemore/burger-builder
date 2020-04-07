@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Input.module.css';
 
-const input = props => {
+const input = (props) => {
   let inputElement = null;
   let validationError = null;
   const inputClasses = [classes.InputElement];
@@ -19,7 +19,7 @@ const input = props => {
           {...props.elementConfig}
           value={props.value}
           onChange={props.changed}
-        ></input>
+        />
       );
       break;
     case 'textarea':
@@ -29,13 +29,13 @@ const input = props => {
           {...props.elementConfig}
           value={props.value}
           onChange={props.changed}
-        ></textarea>
+        />
       );
       break;
     case 'select':
       inputElement = (
         <select className={inputClasses.join(' ')} value={props.value} onChange={props.changed}>
-          {props.elementConfig.options.map(option => (
+          {props.elementConfig.options.map((option) => (
             <option key={option.value} value={option.value}>
               {option.displayValue}
             </option>
@@ -50,7 +50,7 @@ const input = props => {
           {...props.elementConfig}
           value={props.value}
           onChange={props.changed}
-        ></input>
+        />
       );
   }
 
